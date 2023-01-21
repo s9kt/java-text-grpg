@@ -75,7 +75,7 @@ class Main {
               while(true) {
                 System.out.println("What would you like to sell? Or type -1 to exit.");
                 for(int j = 0; j < players.length; j++) {
-                  System.out.println("Player " + (j + 1) + "'s inventory");
+                  System.out.println("Player " + j + "'s inventory");
                   players[j].displayInv();
                 }
                 x = sc.nextInt();

@@ -220,7 +220,7 @@ class Player {
 
   public void displayInv() {
     for(weapon i: weaponInv) {
-      System.out.println(i.getType() + " " + i.getName() + " which does " + i.getDmg() + " damage and sells for " + i.getSellPrice());
+      System.out.println(i.getClass() + " which does " + i.getDmg() + " damage and sells for " + i.getSellPrice());
     }
   }
 

@@ -3,7 +3,6 @@ class sword extends weapon {
   public sword() {
     super.setName(genName());
     super.setClassMatch(0);
-    super.setType("Sword");
   }
 
   private String genName() {
