@@ -3,6 +3,7 @@ class staff extends weapon {
     super();
     super.setName(genName());
     super.setClassMatch(1);
+    super.setType("Staff");
   }
 
   private String genName() {

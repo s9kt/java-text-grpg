@@ -3,6 +3,7 @@ class bow extends weapon {
     super();
     super.setName(genName());
     super.setClassMatch(2);
+    super.setType("bow");
   }
 
   private String genName() {
