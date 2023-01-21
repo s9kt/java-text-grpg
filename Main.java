@@ -73,15 +73,15 @@ class Main {
             }
             if (x == 1) {
               while(true) {
-                System.out.println("What would you like to sell? Or type -1 to exit.");
+                System.out.println("What would you like to sell? Select a Player, or type -1 to exit.");
                 for(int j = 0; j < players.length; j++) {
                   System.out.println("Player " + (j + 1) + "'s inventory");
-                  players[j].displayInv();
                 }
-                x = sc.nextInt();
-                if(x == -1) {
+                x = sc.nextInt() - 1;
+                if(x == -2) {
                   break;
                 }
+                
               }
             }
             if (x == 2) {
