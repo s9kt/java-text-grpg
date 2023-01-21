@@ -1,7 +1,6 @@
 import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 class villager {
   private String name;

@@ -3,6 +3,7 @@ class hammer extends weapon {
     super();
     super.setName(genName());
     super.setClassMatch(4);
+    super.setType("Hammer");
   }
 
   private String genName() {
