@@ -6,6 +6,7 @@ class Main {
   static Player[] players;
   static enemy e = new enemy();
   static weapon s = new sword();
+  object test = new object();
 
   public static void main(String[] args) throws FileNotFoundException {
 
