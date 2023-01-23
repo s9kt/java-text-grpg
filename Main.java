@@ -57,11 +57,12 @@ class Main {
                 if (x == -1) {
                   break;
                 }
-                if (loc[i].weaponsmith.weapons.get(x).getBuyPrice() > Player.getMoney()) {
+                weapon hold = loc[i].weaponsmith.weapons.get(x);
+                if (hold.getBuyPrice() > Player.getMoney()) {
                   System.out.println("You do not have enough money to purchase this item.");
                   continue;
                 }
-                weapon hold = loc[i].weaponsmith.weapons.get(x);
+                Player.removeMoney(hold.getBuyPrice());
                 loc[i].weaponsmith.weapons.remove(x);
                 System.out.println("Which player would you like to give this item to?");
                 for (int j = 0; j < players.length; j++) {
@@ -72,16 +73,22 @@ class Main {
               }
             }
             if (x == 1) {
-              while(true) {
+              while (true) {
                 System.out.println("What would you like to sell? Select a Player, or type -1 to exit.");
-                for(int j = 0; j < players.length; j++) {
-                  System.out.println("Player " + (j + 1) + "'s inventory");
+                for (int j = 0; j < players.length; j++) {
+                  System.out.println("Player " + (j + 1));
                 }
                 x = sc.nextInt() - 1;
-                if(x == -2) {
+
+                if (x == -2) {
                   break;
                 }
-                
+                System.out.println("Player " + (x + 1) + "'s inventory");
+                players[x].displayInv();
+                System.out.println("What do you wish to sell?");
+                int sell = sc.nextInt();
+                Player.addMoney(players[x].weaponInv.get(sell).getSellPrice());
+                players[x].removeWeaponInv(sell);
               }
             }
             if (x == 2) {
@@ -89,17 +96,10 @@ class Main {
             }
           }
           break;
-        
-        
-        
-        
-        
-        
-        
+
         case 3:
           exit = true;
           break;
-          
 
       }
     }

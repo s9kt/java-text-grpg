@@ -208,10 +208,12 @@ class Player {
 
   public static void addMoney(int x) {
     money += x;
+    System.out.println(x + " money has been added to your balance");
   }
 
   public static void removeMoney(int x) {
     money -= x;
+    System.out.println(x + " money has been deducted from your balance.");
   }
 
   public static int getMoney() {
@@ -219,8 +221,8 @@ class Player {
   }
 
   public void displayInv() {
-    for(weapon i: weaponInv) {
-      System.out.println(i.getType() + " " + i.getName() + " which does " + i.getDmg() + " damage and sells for " + i.getSellPrice());
+    for(int i = 0; i < weaponInv.size(); i++) {
+      System.out.println(i + ") " + weaponInv.get(i).getType() + " " + weaponInv.get(i).getName() + " which does " + weaponInv.get(i).getDmg() + " damage and sells for " + weaponInv.get(i).getSellPrice());
     }
   }
 
