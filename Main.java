@@ -43,12 +43,18 @@ class Main {
       System.out.println(
           "What would you like to do?\n(0) Talk to the Weaponsmith\n(1) Talk to the Physician\n(2) Talk to the General Store Owner\n(3) Quit");
       int x = sc.nextInt();
+      if(validInput(x, 0, 3) == false) {
+        continue;
+      }
       switch (x) {
         case 0:
           System.out.println("Hi, welcome to my weapon shop! My name is " + loc[i].weaponsmith.getName());
           while (true) {
             System.out.println("What would you like to do?\n(0) Buy\n(1) Sell\n(2) Leave");
             x = sc.nextInt();
+            if(validInput(x, 0, 2) == false) {
+              continue;
+            }
             if (x == 0) {
               while (true) {
                 System.out.println("What would you like to buy? Or type -1 to exit");
@@ -56,6 +62,9 @@ class Main {
                 x = sc.nextInt();
                 if (x == -1) {
                   break;
+                }
+                else if(validInput(x, 0, loc[i].weaponsmith.weapons.size() - 1) == false) {
+                  continue;
                 }
                 weapon hold = loc[i].weaponsmith.weapons.get(x);
                 if (hold.getBuyPrice() > Player.getMoney()) {
@@ -79,10 +88,14 @@ class Main {
                   System.out.println("Player " + (j + 1));
                 }
                 x = sc.nextInt() - 1;
-
                 if (x == -2) {
                   break;
                 }
+                else if(validInput(x, 0, players.length - 1) == false) {
+                  continue;
+                }
+
+                
                 System.out.println("Player " + (x + 1) + "'s inventory");
                 players[x].displayInv();
                 System.out.println("What do you wish to sell?");
@@ -102,6 +115,16 @@ class Main {
           break;
 
       }
+    }
+  }
+
+  public static boolean validInput(int value, int min, int max) {
+    if(min - 1 < value && value < max + 1) {
+      return true;
+    }
+    else {
+      System.out.println("Input is invalid, please try again.");
+      return false;
     }
   }
 
