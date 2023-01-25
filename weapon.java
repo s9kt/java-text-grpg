@@ -4,15 +4,11 @@ class weapon extends item {
   private String type;
 
   public weapon() {
-    dmg = (int)(Math.random() * 100) + 15;
-    int buyPrice = (int)(Math.random() * 75) + (dmg + 20);
+    dmg = (int) (Math.random() * 100) + 15;
+    int buyPrice = (int) (Math.random() * 75) + (dmg + 20);
     int sellPrice = (buyPrice / 2) + 5;
     super.setBuy(buyPrice);
     super.setSell(sellPrice);
-  }
-
-  protected void setName(String x) {
-    super.setName(x);
   }
 
   protected void setClassMatch(int x) {
@@ -35,5 +31,8 @@ class weapon extends item {
     return type;
   }
 
-  
+  public String toString() {
+    return getType() + ": " + "\"" + getName() + "\"" + " for " + getBuyPrice() + " which does " + getDmg() + " damage";
+  }
+
 }

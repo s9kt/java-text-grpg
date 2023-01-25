@@ -4,9 +4,8 @@ class item {
   private int sellPrice;
 
   public item() {
-    
-  }
 
+  }
 
   protected void setName(String x) {
     itemName = x;
@@ -19,11 +18,12 @@ class item {
   protected void setSell(int x) {
     sellPrice = x;
   }
-  
+
   public String getName() {
     return itemName;
   }
-  public int getBuyPrice(){
+
+  public int getBuyPrice() {
     return buyPrice;
   }
 

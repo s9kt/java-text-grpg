@@ -12,7 +12,4 @@ class knife extends weapon {
     return str;
   }
 
-  public String toString() {
-    return "Knife: " + "\"" + getName() + "\"" + " for " + getBuyPrice() + " which does " + getDmg() + " damage";
-  }
 }

@@ -186,6 +186,10 @@ class Player {
     return health;
   }
 
+  public void addHealth(int x) {
+    health += x;
+  }
+
   public int getPlrClass() {
     return classSelect;
   }

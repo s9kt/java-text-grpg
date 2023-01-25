@@ -12,7 +12,5 @@ class bow extends weapon {
     return str;
   }
 
-  public String toString() {
-    return "bow: " + "\"" + getName() + "\"" + " for " + getBuyPrice() + " which does " + getDmg() + " damage";
-  }
+
 }

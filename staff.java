@@ -12,7 +12,4 @@ class staff extends weapon {
     return str;
   }
 
-  public String toString() {
-    return "Staff: " + "\"" + getName() + "\"" + " for " + getBuyPrice() + " which does " + getDmg() + " damage";
-  }
 }

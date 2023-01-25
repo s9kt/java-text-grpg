@@ -12,7 +12,5 @@ class hammer extends weapon {
     return str;
   }
 
-  public String toString() {
-    return "Hammer: " + "\"" + getName() + "\"" + " for " + getBuyPrice() + " which does " + getDmg() + " damage";
-  }
+  
 }

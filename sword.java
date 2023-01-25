@@ -1,7 +1,7 @@
 class sword extends weapon {
   
   public sword() {
-    super.setName(genName());
+    setName(genName());
     super.setClassMatch(0);
     super.setType("Sword");
   }
@@ -166,7 +166,4 @@ class sword extends weapon {
   }
 
 
-  public String toString() {
-    return "Sword: " + "\"" + getName() + "\"" + " for " + getBuyPrice() + " which does " + getDmg() + " damage";
-  }
 }
