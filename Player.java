@@ -190,6 +190,10 @@ class Player {
     health += x;
   }
 
+  public void removeHealth(int x) {
+    health -= x;
+  }
+
   public int getPlrClass() {
     return classSelect;
   }
