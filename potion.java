@@ -10,6 +10,7 @@ class potion extends item {
     effect = x;
   }
 
+  
   protected void setEffectVal(int x) {
     effectVal = x;
   }
@@ -17,12 +18,13 @@ class potion extends item {
   public String getEffect() {
     return effect;
   }
-
+  
   public int getEffectVal() {
    return effectVal; 
   }
 
+
   public String toString() {
-    return "This is a potion that gives " + getEffectVal() + " " + getEffect() + " and costs " + getBuyPrice();
+    return "This is a " +  getName() + " that gives " + getEffectVal() + " " + getEffect() + " and costs " + getBuyPrice();
   }
 }

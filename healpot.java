@@ -1,7 +1,8 @@
 class healpot extends potion {
   int effectVal;
   public healpot() {
-    setEffect("Healing");
+    setEffect("Health");
+    setName("Health potion");
     effectVal = genEffectVal();
     setEffectVal(effectVal);
     setBuy(genPrice(effectVal));

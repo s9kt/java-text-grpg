@@ -2,6 +2,7 @@ class speedpot extends potion {
   int effectVal;
   public speedpot() {
     setEffect("Speed");
+    setName("Speed potion");
     effectVal = genEffectVal();
     setEffectVal(effectVal);
     setBuy(genPrice(effectVal));

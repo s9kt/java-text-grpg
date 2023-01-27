@@ -15,10 +15,12 @@ class Player {
   private int wis;
   private int cha;
   ArrayList<weapon> weaponInv;
+  ArrayList<potion> potionInv;
   ArrayList<item> inv;
 
   public Player(int x) {
     weaponInv = new ArrayList<weapon>();
+    potionInv = new ArrayList<potion>();
     inv = new ArrayList<item>();
     // Getting name of character
     // getName(x);

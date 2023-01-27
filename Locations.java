@@ -3,10 +3,12 @@ import java.io.FileNotFoundException;
 class Locations {
   private String locName;
   public weaponsmith weaponsmith;
+  public physician physician;
 
   public Locations() throws FileNotFoundException {
     locName = locationGen();
     weaponsmith = new weaponsmith();
+    physician = new physician();
   }
 
   private String locationGen() { // Sourced from https://www.scifiideas.com/js/city-name-generator.js

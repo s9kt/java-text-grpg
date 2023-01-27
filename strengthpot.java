@@ -2,6 +2,7 @@ class strengthpot extends potion {
   int effectVal;
   public strengthpot() {
     setEffect("Strength");
+    setName("Strength potion");
     effectVal = genEffectVal();
     setEffectVal(effectVal);
     setBuy(genPrice(effectVal));

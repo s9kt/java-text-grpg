@@ -21,7 +21,7 @@ class Main {
       // Create a getStats(); method to pull information
       // Syntax would be like System.out.println(players[x].getProfile());
     }
-    x = (int) (Math.random() * 10) + 1;
+    x = (int) (Math.random() * 7) + 3;
     Locations[] locations = new Locations[x];
     for (int i = 0; i < x; i++) {
       locations[i] = new Locations();
@@ -43,7 +43,7 @@ class Main {
       System.out.println(
           "What would you like to do?\n(0) Talk to the Weaponsmith\n(1) Talk to the Physician\n(2) Talk to the General Store Owner\n(3) Quit");
       int x = sc.nextInt();
-      if(validInput(x, 0, 3) == false) {
+      if (validInput(x, 0, 3) == false) {
         continue;
       }
       switch (x) {
@@ -52,33 +52,41 @@ class Main {
           while (true) {
             System.out.println("What would you like to do?\n(0) Buy\n(1) Sell\n(2) Leave");
             x = sc.nextInt();
-            if(validInput(x, 0, 2) == false) {
+            if (validInput(x, 0, 2) == false) {
               continue;
             }
             if (x == 0) {
               while (true) {
                 System.out.println("What would you like to buy? Or type -1 to exit");
+                System.out.println("Note the following matches for weapon types and classes:");
+                System.out.println("Knight: Sword\nMage: Staff\nRanger Bow\nAssassain: Knife\nPaladin: Hammer");
                 loc[i].weaponsmith.displayInv();
+                System.out.println("You have " + Player.getMoney() + " money");
                 x = sc.nextInt();
                 if (x == -1) {
                   break;
-                }
-                else if(validInput(x, 0, loc[i].weaponsmith.weapons.size() - 1) == false) {
+                } else if (validInput(x, 0, loc[i].weaponsmith.weapons.size() - 1) == false) {
                   continue;
                 }
                 weapon hold = loc[i].weaponsmith.weapons.get(x);
                 if (hold.getBuyPrice() > Player.getMoney()) {
-                  System.out.println("You do not have enough money to purchase this item.");
+                  System.out.println("You do not have enough money to purchase this item. You have " + Player.getMoney() + " money.");
                   continue;
                 }
                 Player.removeMoney(hold.getBuyPrice());
                 loc[i].weaponsmith.weapons.remove(x);
-                System.out.println("Which player would you like to give this item to?");
-                for (int j = 0; j < players.length; j++) {
-                  System.out.println("Player " + (j + 1));
+                while (true) {
+                  System.out.println("Which player would you like to give this item to?");
+                  for (int j = 0; j < players.length; j++) {
+                    System.out.println("Player " + "(" + (j + 1) + ")");
+                  }
+                  x = sc.nextInt() - 1;
+                  if (validInput(x, 0, players.length - 1) == false) {
+                    continue;
+                  }
+                  players[x].weaponInv.add(hold);
+                    break;
                 }
-                x = sc.nextInt() - 1;
-                players[x].weaponInv.add(hold);
               }
             }
             if (x == 1) {
@@ -90,12 +98,10 @@ class Main {
                 x = sc.nextInt() - 1;
                 if (x == -2) {
                   break;
-                }
-                else if(validInput(x, 0, players.length - 1) == false) {
+                } else if (validInput(x, 0, players.length - 1) == false) {
                   continue;
                 }
 
-                
                 System.out.println("Player " + (x + 1) + "'s inventory");
                 players[x].displayInv();
                 System.out.println("What do you wish to sell?");
@@ -109,7 +115,54 @@ class Main {
             }
           }
           break;
+        case 1:
+          System.out.println("Hi, welcome to my Pharmacy! My name is " + loc[i].physician.getName());
+          while (true) {
+            System.out.println("What would you like to do?\n(0) Buy\n(1) Leave");
+            x = sc.nextInt();
+            if(x == 1) {
+              break;
+            }
+            if(validInput(x, 0, 1) == false) {
+              continue;
+            }
+            if(x == 0) {
+              System.out.println("What potion would you like to purchase? Or type -1 to exit.");
+              System.out.println("Healing Potions give you health\nStrength potions give you extra damage\nSpeed potions give you a higher chance of dodging.");
+              while(true) {
+                loc[i].physician.displayInv();
+                System.out.println("You have " + Player.getMoney() + " money.");
+                x = sc.nextInt();
+                if (x == -1) {
+                  break;
+                } else if (validInput(x, 0, loc[i].weaponsmith.weapons.size() - 1) == false) {
+                  continue;
+                }
+                potion hold = loc[i].physician.potions.get(x);
+                if(hold.getBuyPrice() > Player.getMoney()) {
+                  System.out.println("You do not have enough money to purchase this item. You have " + Player.getMoney() + " money.");
+                  continue;
+                }
+                Player.removeMoney(hold.getBuyPrice());
+                loc[i].physician.potions.remove(x);
+                while (true) {
+                  System.out.println("Which player would you like to give this item to?");
+                  for (int j = 0; j < players.length; j++) {
+                    System.out.println("Player " + "(" + (j + 1) + ")");
+                  }
+                  x = sc.nextInt() - 1;
+                  if (validInput(x, 0, players.length - 1) == false) {
+                    continue;
+                  }
+                  players[x].potionInv.add(hold);
+                    break;
+                }
 
+                
+              }
+            }
+          }
+          break;
         case 3:
           exit = true;
           break;
@@ -119,10 +172,9 @@ class Main {
   }
 
   public static boolean validInput(int value, int min, int max) {
-    if(min - 1 < value && value < max + 1) {
+    if (min - 1 < value && value < max + 1) {
       return true;
-    }
-    else {
+    } else {
       System.out.println("Input is invalid, please try again.");
       return false;
     }

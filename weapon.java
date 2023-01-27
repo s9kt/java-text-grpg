@@ -5,7 +5,7 @@ class weapon extends item {
 
   public weapon() {
     dmg = (int) (Math.random() * 100) + 15;
-    int buyPrice = (int) (Math.random() * 75) + (dmg + 20);
+    int buyPrice = (int) (Math.random() * 45) + (dmg + 10);
     int sellPrice = (buyPrice / 2) + 5;
     super.setBuy(buyPrice);
     super.setSell(sellPrice);

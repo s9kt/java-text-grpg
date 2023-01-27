@@ -14,7 +14,7 @@ class weaponsmith extends villager {
   }
 
   private weapon weaponGen() {
-    switch((int)(Math.random() * 3) + 1) {
+    switch((int)(Math.random() * 5) + 1) {
       case 1:
         return new sword();
       case 2:
@@ -31,7 +31,7 @@ class weaponsmith extends villager {
 
   public void displayInv() {
       for(int i = 0; i < weapons.size(); i++) {
-        System.out.println(i + ")" + " " + weapons.get(i));
+        System.out.println("(" + i + ")" + " " + weapons.get(i));
       }
     }
 }
