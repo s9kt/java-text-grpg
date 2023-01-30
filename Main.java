@@ -60,7 +60,7 @@ class Main {
                 System.out.println("What would you like to buy? Or type -1 to exit");
                 System.out.println("Note the following matches for weapon types and classes:");
                 System.out.println("Knight: Sword\nMage: Staff\nRanger Bow\nAssassain: Knife\nPaladin: Hammer");
-                loc[i].weaponsmith.displayInv();
+                loc[i].weaponsmith.displayWeaponInv();
                 System.out.println("You have " + Player.getMoney() + " money");
                 x = sc.nextInt();
                 if (x == -1) {
@@ -103,9 +103,12 @@ class Main {
                 }
 
                 System.out.println("Player " + (x + 1) + "'s inventory");
-                players[x].displayInv();
+                players[x].displayWeaponInv();
                 System.out.println("What do you wish to sell?");
                 int sell = sc.nextInt();
+                if(validInput(sell, 1, Player.inv.size()) == false) {
+                  continue;
+                }
                 Player.addMoney(players[x].weaponInv.get(sell).getSellPrice());
                 players[x].removeWeaponInv(sell);
               }
@@ -163,13 +166,51 @@ class Main {
             }
           }
           break;
-        case 3:
-          exit = true;
-          break;
+        
+          case 2:
+          System.out.println("Welcome to my store! My name is " + loc[i].genStore.getName());
+          while(true) {
+            System.out.println("What would you like to do?\n(0) Sell\n(1) Leave");
+            x = sc.nextInt();
+            if(validInput(x, 0, 1) == false) {
+              continue;
+            }
+            else if(x == 1) {
+              break;
+            }
+            if(x == 0) {
+              while (true) {
+                System.out.println("What would you like to sell? Select a Player, or type -1 to exit.");
+                for (int j = 0; j < players.length; j++) {
+                  System.out.println("Player " + (j + 1));
+                }
+                x = sc.nextInt() - 1;
+                if (x == -2) {
+                  break;
+                } else if (validInput(x, 0, players.length - 1) == false) {
+                  continue;
+                }
 
+                System.out.println("Player " + (x + 1) + "'s inventory");
+                players[x].displayInv();
+                System.out.println("What do you wish to sell?");
+                int sell = sc.nextInt();
+                if(validInput(sell, 1, players.length) == false) {
+                  continue;
+                }
+                Player.addMoney(players[x].inv.get(sell).getSellPrice());
+                players[x].removeInv(sell);
+              }
+            }
+            }
+            break;
+            
+          case 3:
+            exit = true;
+            break;
+          }
       }
     }
-  }
 
   public static boolean validInput(int value, int min, int max) {
     if (min - 1 < value && value < max + 1) {
