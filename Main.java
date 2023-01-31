@@ -60,7 +60,7 @@ class Main {
                 System.out.println("What would you like to buy? Or type -1 to exit");
                 System.out.println("Note the following matches for weapon types and classes:");
                 System.out.println("Knight: Sword\nMage: Staff\nRanger Bow\nAssassain: Knife\nPaladin: Hammer");
-                loc[i].weaponsmith.displayWeaponInv();
+                loc[i].weaponsmith.displayInv();
                 System.out.println("You have " + Player.getMoney() + " money");
                 x = sc.nextInt();
                 if (x == -1) {
@@ -99,6 +99,9 @@ class Main {
                 if (x == -2) {
                   break;
                 } else if (validInput(x, 0, players.length - 1) == false) {
+                  continue;
+                } else if (players[x].weaponInv.size() == 0) {
+                  System.out.println("Player " + (x + 1) +  "'s inventory is empty.");
                   continue;
                 }
 
@@ -188,6 +191,9 @@ class Main {
                 if (x == -2) {
                   break;
                 } else if (validInput(x, 0, players.length - 1) == false) {
+                  continue;
+                } else if (players[x].weaponInv.size() == 0) {
+                  System.out.println("Player " + (x + 1) +  "'s inventory is empty.");
                   continue;
                 }
 
