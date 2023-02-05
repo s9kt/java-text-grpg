@@ -16,12 +16,11 @@ class Player {
   private int cha;
   ArrayList<weapon> weaponInv;
   ArrayList<potion> potionInv;
-  static ArrayList<item> inv;
+  static ArrayList<item> inv = new ArrayList<item>();
 
   public Player(int x) {
     weaponInv = new ArrayList<weapon>();
     potionInv = new ArrayList<potion>();
-    inv = new ArrayList<item>();
     // Getting name of character
     // getName(x);
     // Getting race of character
@@ -204,7 +203,7 @@ class Player {
     weaponInv.add(weapon);
   }
 
-  public void addInv(item item) {
+  public static void addInv(item item) {
     inv.add(item);
   }
 
@@ -212,7 +211,7 @@ class Player {
     weaponInv.remove(x);
   }
 
-  public void removeInv(int x) {
+  public static void removeInv(int x) {
     inv.remove(x);
   }
 
@@ -236,7 +235,7 @@ class Player {
     }
   }
 
-  public void displayInv() {
+  public static void displayCommonInv() {
     for(int i = 0; i < inv.size(); i++) {
       System.out.println(i + ") " + inv.get(i).getName() + " for " + inv.get(i).getSellPrice() + " money.");
     }

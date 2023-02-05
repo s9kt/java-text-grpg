@@ -1,10 +1,9 @@
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 
 // https://stackoverflow.com/questions/14088221/accessing-objects-of-other-classes
 class Main {
   static Player[] players;
-  static enemy e = new enemy();
   static weapon s = new sword();
 
   public static void main(String[] args) throws FileNotFoundException {
@@ -183,29 +182,19 @@ class Main {
             }
             if(x == 0) {
               while (true) {
-                System.out.println("What would you like to sell? Select a Player, or type -1 to exit.");
-                for (int j = 0; j < players.length; j++) {
-                  System.out.println("Player " + (j + 1));
-                }
-                x = sc.nextInt() - 1;
-                if (x == -2) {
+                if(Player.inv.size() == 0) {
+                  System.out.println("You have nothing in your inventory.");
                   break;
-                } else if (validInput(x, 0, players.length - 1) == false) {
-                  continue;
-                } else if (players[x].weaponInv.size() == 0) {
-                  System.out.println("Player " + (x + 1) +  "'s inventory is empty.");
-                  continue;
                 }
-
-                System.out.println("Player " + (x + 1) + "'s inventory");
-                players[x].displayInv();
+                System.out.println("What would you like to sell? Or type -1 to exit.");
+                Player.displayCommonInv();
                 System.out.println("What do you wish to sell?");
                 int sell = sc.nextInt();
-                if(validInput(sell, 1, players.length) == false) {
+                if(validInput(sell, 1, Player.inv.size() - 1) == false) {
                   continue;
                 }
-                Player.addMoney(players[x].inv.get(sell).getSellPrice());
-                players[x].removeInv(sell);
+                Player.addMoney(Player.inv.get(sell).getSellPrice());
+                Player.removeInv(sell);
               }
             }
             }
@@ -218,7 +207,20 @@ class Main {
       }
     }
 
-  public static boolean validInput(int value, int min, int max) {
+public static void fight() {
+  ArrayList<enemy> enemies = new ArrayList<enemy>();
+
+  for(int i = 0; i < enemies.size(); i++) {
+    enemies.add(new enemy());
+  }
+  boolean fighting = true;
+  while(fighting == true) {
+    
+  }
+}
+
+
+    public static boolean validInput(int value, int min, int max) {
     if (min - 1 < value && value < max + 1) {
       return true;
     } else {
