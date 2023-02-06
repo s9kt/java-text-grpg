@@ -213,6 +213,7 @@ public static void fight() {
   for(int i = 0; i < enemies.size(); i++) {
     enemies.add(new enemy());
   }
+  
   boolean fighting = true;
   while(fighting == true) {
     

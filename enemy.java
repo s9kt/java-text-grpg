@@ -14,6 +14,6 @@ class enemy{
 
   public void lightAttack(Player player, int playerNum) {
     System.out.println("The enemy performed a light attack on player " + playerNum + "!");
-    
+    player.removeHealth();
   }
 }
