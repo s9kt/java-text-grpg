@@ -99,18 +99,12 @@ class Main {
                   break;
                 } else if (validInput(x, 0, players.length - 1) == false) {
                   continue;
-                } else if (players[x].weaponInv.size() == 0) {
-                  System.out.println("Player " + (x + 1) +  "'s inventory is empty.");
-                  continue;
                 }
 
                 System.out.println("Player " + (x + 1) + "'s inventory");
-                players[x].displayWeaponInv();
+                players[x].displayInv();
                 System.out.println("What do you wish to sell?");
                 int sell = sc.nextInt();
-                if(validInput(sell, 1, Player.inv.size()) == false) {
-                  continue;
-                }
                 Player.addMoney(players[x].weaponInv.get(sell).getSellPrice());
                 players[x].removeWeaponInv(sell);
               }

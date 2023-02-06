@@ -7,6 +7,11 @@ class item {
 
   }
 
+  public item(String name, int sell) {
+    itemName = name;
+    sellPrice = sell;
+  }
+
   protected void setName(String x) {
     itemName = x;
   }

@@ -229,7 +229,7 @@ class Player {
     return money;
   }
 
-  public void displayWeaponInv() {
+  public void displayInv() {
     for(int i = 0; i < weaponInv.size(); i++) {
       System.out.println(i + ") " + weaponInv.get(i).getType() + " " + weaponInv.get(i).getName() + " which does " + weaponInv.get(i).getDmg() + " damage and sells for " + weaponInv.get(i).getSellPrice());
     }
