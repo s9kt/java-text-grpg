@@ -7,8 +7,8 @@ class weapon extends item {
     dmg = (int) (Math.random() * 100) + 15;
     int buyPrice = (int) (Math.random() * 45) + (dmg + 10);
     int sellPrice = (buyPrice / 2) + 5;
-    super.setBuy(buyPrice);
-    super.setSell(sellPrice);
+    setBuy(buyPrice);
+    setSell(sellPrice);
   }
 
   protected void setClassMatch(int x) {

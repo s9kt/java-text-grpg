@@ -16,7 +16,7 @@ class Player {
   private int cha;
   ArrayList<weapon> weaponInv;
   ArrayList<potion> potionInv;
-  static ArrayList<item> inv;
+  ArrayList<item> inv;
 
   public Player(int x) {
     weaponInv = new ArrayList<weapon>();
@@ -230,15 +230,9 @@ class Player {
     return money;
   }
 
-  public void displayWeaponInv() {
+  public void displayInv() {
     for(int i = 0; i < weaponInv.size(); i++) {
       System.out.println(i + ") " + weaponInv.get(i).getType() + " " + weaponInv.get(i).getName() + " which does " + weaponInv.get(i).getDmg() + " damage and sells for " + weaponInv.get(i).getSellPrice());
-    }
-  }
-
-  public void displayInv() {
-    for(int i = 0; i < inv.size(); i++) {
-      System.out.println(i + ") " + inv.get(i).getName() + " for " + inv.get(i).getSellPrice() + " money.");
     }
   }
 
