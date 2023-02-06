@@ -3,7 +3,7 @@ import java.util.*;
 
 // https://stackoverflow.com/questions/14088221/accessing-objects-of-other-classes
 class Main {
-  static Player[] players;
+  static ArrayList<Player> players = new ArrayList<Player>();
   static weapon s = new sword();
 
   public static void main(String[] args) throws FileNotFoundException {
@@ -14,11 +14,10 @@ class Main {
     int x = (int) (Math.random() * 4) + 1;
     System.out.println("In this adventure, you will have " + x + " characters.");
 
-    players = new Player[x];
     for (int i = 0; i < x; i++) {
-      players[i] = new Player(i + 1);
+      players.add(new Player(i + 1));
       // Create a getStats(); method to pull information
-      // Syntax would be like System.out.println(players[x].getProfile());
+      // Syntax would be like System.out.println(players.get(x).getProfile());
     }
     x = (int) (Math.random() * 7) + 3;
     Locations[] locations = new Locations[x];
@@ -28,6 +27,7 @@ class Main {
 
     for (int i = 0; i < locations.length; i++) {
       enterLoc(i, locations);
+      fight(i);
     }
 
     // System.out.println(players[0].getProfile());
@@ -76,14 +76,14 @@ class Main {
                 loc[i].weaponsmith.weapons.remove(x);
                 while (true) {
                   System.out.println("Which player would you like to give this item to?");
-                  for (int j = 0; j < players.length; j++) {
+                  for (int j = 0; j < players.size(); j++) {
                     System.out.println("Player " + "(" + (j + 1) + ")");
                   }
                   x = sc.nextInt() - 1;
-                  if (validInput(x, 0, players.length - 1) == false) {
+                  if (validInput(x, 0, players.size() - 1) == false) {
                     continue;
                   }
-                  players[x].weaponInv.add(hold);
+                  players.get(x).weaponInv.add(hold);
                     break;
                 }
               }
@@ -91,22 +91,22 @@ class Main {
             if (x == 1) {
               while (true) {
                 System.out.println("What would you like to sell? Select a Player, or type -1 to exit.");
-                for (int j = 0; j < players.length; j++) {
+                for (int j = 0; j < players.size(); j++) {
                   System.out.println("Player " + (j + 1));
                 }
                 x = sc.nextInt() - 1;
                 if (x == -2) {
                   break;
-                } else if (validInput(x, 0, players.length - 1) == false) {
+                } else if (validInput(x, 0, players.size() - 1) == false) {
                   continue;
                 }
 
                 System.out.println("Player " + (x + 1) + "'s inventory");
-                players[x].displayInv();
+                players.get(x).displayInv();
                 System.out.println("What do you wish to sell?");
                 int sell = sc.nextInt();
-                Player.addMoney(players[x].weaponInv.get(sell).getSellPrice());
-                players[x].removeWeaponInv(sell);
+                Player.addMoney(players.get(x).weaponInv.get(sell).getSellPrice());
+                players.get(x).removeWeaponInv(sell);
               }
             }
             if (x == 2) {
@@ -146,14 +146,14 @@ class Main {
                 loc[i].physician.potions.remove(x);
                 while (true) {
                   System.out.println("Which player would you like to give this item to?");
-                  for (int j = 0; j < players.length; j++) {
+                  for (int j = 0; j < players.size(); j++) {
                     System.out.println("Player " + "(" + (j + 1) + ")");
                   }
                   x = sc.nextInt() - 1;
-                  if (validInput(x, 0, players.length - 1) == false) {
+                  if (validInput(x, 0, players.size() - 1) == false) {
                     continue;
                   }
-                  players[x].potionInv.add(hold);
+                  players.get(x).potionInv.add(hold);
                     break;
                 }
 
@@ -201,16 +201,28 @@ class Main {
       }
     }
 
-public static void fight() {
+public static void fight(int level) {
   ArrayList<enemy> enemies = new ArrayList<enemy>();
+  Scanner sc = new Scanner(System.in);
 
   for(int i = 0; i < enemies.size(); i++) {
-    enemies.add(new enemy());
+    enemies.add(new enemy(level));
   }
   
   boolean fighting = true;
   while(fighting == true) {
-    
+    for(int i = 0; i < players.size(); i++) {
+      System.out.println(players.get(i).getName() + ", which enemy would you like to attack?");
+      for(int j = 0; j < enemies.size(); j++) {
+        System.out.println("Enemy " + (j + 1));
+      }
+      int x = sc.nextInt();
+      if((int)(Math.random() * 10) + 1 > 8) {
+        System.out.println("The enemy dodged the attack.");
+        continue;
+      }
+      
+    }
   }
 }
 

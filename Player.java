@@ -22,7 +22,7 @@ class Player {
     weaponInv = new ArrayList<weapon>();
     potionInv = new ArrayList<potion>();
     // Getting name of character
-    // getName(x);
+    // genName(x);
     // Getting race of character
     // getRace();
     // Getting class of character
@@ -33,7 +33,7 @@ class Player {
     // raceBonus(race);
   }
 
-  private String getName(int x) {
+  private String genName(int x) {
     Scanner getName = new Scanner(System.in);
     System.out.println("What is the name of character " + x + "?");
     charName = getName.nextLine();
@@ -239,6 +239,10 @@ class Player {
     for(int i = 0; i < inv.size(); i++) {
       System.out.println(i + ") " + inv.get(i).getName() + " for " + inv.get(i).getSellPrice() + " money.");
     }
+  }
+
+  public String getName() {
+    return charName;
   }
 
 }

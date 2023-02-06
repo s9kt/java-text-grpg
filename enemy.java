@@ -2,9 +2,9 @@ class enemy{
   private int health;
   private int lightAttack;
 
-  public enemy(){
+  public enemy(int level){
     health = (int)(Math.random() * 50) + 10;
-    lightAttack = (int)(Math.random() * health) + 5;
+    lightAttack = (int)(Math.random() * health) + (level * 5);
   }
 
   public void removeHealth(int x){
@@ -14,6 +14,10 @@ class enemy{
 
   public void lightAttack(Player player, int playerNum) {
     System.out.println("The enemy performed a light attack on player " + playerNum + "!");
-    player.removeHealth();
+    player.removeHealth(lightAttack);
+  }
+
+  public void heavyAttack(Player player, int playerNum) {
+    
   }
 }
