@@ -69,7 +69,8 @@ class Main {
                 }
                 weapon hold = loc[i].weaponsmith.weapons.get(x);
                 if (hold.getBuyPrice() > Player.getMoney()) {
-                  System.out.println("You do not have enough money to purchase this item. You have " + Player.getMoney() + " money.");
+                  System.out.println(
+                      "You do not have enough money to purchase this item. You have " + Player.getMoney() + " money.");
                   continue;
                 }
                 Player.removeMoney(hold.getBuyPrice());
@@ -84,7 +85,7 @@ class Main {
                     continue;
                   }
                   players.get(x).weaponInv.add(hold);
-                    break;
+                  break;
                 }
               }
             }
@@ -119,16 +120,17 @@ class Main {
           while (true) {
             System.out.println("What would you like to do?\n(0) Buy\n(1) Leave");
             x = sc.nextInt();
-            if(x == 1) {
+            if (x == 1) {
               break;
             }
-            if(validInput(x, 0, 1) == false) {
+            if (validInput(x, 0, 1) == false) {
               continue;
             }
-            if(x == 0) {
+            if (x == 0) {
               System.out.println("What potion would you like to purchase? Or type -1 to exit.");
-              System.out.println("Healing Potions give you health\nStrength potions give you extra damage\nSpeed potions give you a higher chance of dodging.");
-              while(true) {
+              System.out.println(
+                  "Healing Potions give you health\nStrength potions give you extra damage\nSpeed potions give you a higher chance of dodging.");
+              while (true) {
                 loc[i].physician.displayInv();
                 System.out.println("You have " + Player.getMoney() + " money.");
                 x = sc.nextInt();
@@ -138,8 +140,9 @@ class Main {
                   continue;
                 }
                 potion hold = loc[i].physician.potions.get(x);
-                if(hold.getBuyPrice() > Player.getMoney()) {
-                  System.out.println("You do not have enough money to purchase this item. You have " + Player.getMoney() + " money.");
+                if (hold.getBuyPrice() > Player.getMoney()) {
+                  System.out.println(
+                      "You do not have enough money to purchase this item. You have " + Player.getMoney() + " money.");
                   continue;
                 }
                 Player.removeMoney(hold.getBuyPrice());
@@ -154,29 +157,27 @@ class Main {
                     continue;
                   }
                   players.get(x).potionInv.add(hold);
-                    break;
+                  break;
                 }
 
-                
               }
             }
           }
           break;
-        
-          case 2:
+
+        case 2:
           System.out.println("Welcome to my store! My name is " + loc[i].genStore.getName());
-          while(true) {
+          while (true) {
             System.out.println("What would you like to do?\n(0) Sell\n(1) Leave");
             x = sc.nextInt();
-            if(validInput(x, 0, 1) == false) {
+            if (validInput(x, 0, 1) == false) {
               continue;
-            }
-            else if(x == 1) {
+            } else if (x == 1) {
               break;
             }
-            if(x == 0) {
+            if (x == 0) {
               while (true) {
-                if(Player.inv.size() == 0) {
+                if (Player.inv.size() == 0) {
                   System.out.println("You have nothing in your inventory.");
                   break;
                 }
@@ -184,50 +185,66 @@ class Main {
                 Player.displayCommonInv();
                 System.out.println("What do you wish to sell?");
                 int sell = sc.nextInt();
-                if(validInput(sell, 1, Player.inv.size() - 1) == false) {
+                if (validInput(sell, 1, Player.inv.size() - 1) == false) {
                   continue;
                 }
                 Player.addMoney(Player.inv.get(sell).getSellPrice());
                 Player.removeInv(sell);
               }
             }
-            }
-            break;
-            
-          case 3:
-            exit = true;
-            break;
           }
+          break;
+
+        case 3:
+          exit = true;
+          break;
       }
     }
-
-public static void fight(int level) {
-  ArrayList<enemy> enemies = new ArrayList<enemy>();
-  Scanner sc = new Scanner(System.in);
-
-  for(int i = 0; i < enemies.size(); i++) {
-    enemies.add(new enemy(level));
   }
-  
-  boolean fighting = true;
-  while(fighting == true) {
-    for(int i = 0; i < players.size(); i++) {
-      System.out.println(players.get(i).getName() + ", which enemy would you like to attack?");
-      for(int j = 0; j < enemies.size(); j++) {
-        System.out.println("Enemy " + (j + 1));
+
+  public static void fight(int level) {
+    ArrayList<enemy> enemies = new ArrayList<enemy>();
+    Scanner sc = new Scanner(System.in);
+    int x = 0;
+
+    for (int i = 0; i < (int) (Math.random() * (level + players.size())) + level; i++) {
+      enemies.add(new enemy(level));
+    }
+
+    System.out.println("You have encountered " + enemies.size() + " enemies!");
+
+    boolean fighting = true;
+    while (fighting == true) {
+      for (int i = 0; i < players.size(); i++) {
+        while (true) {
+          System.out.println(players.get(i).getName() + i + ", what would you like to do?\n(0) Attack\n(1) Use a potion");
+          x = sc.nextInt();
+          if (validInput(x, 0, 1) == false) {
+            continue;
+          }
+          break;
+        }
+        switch (x) {
+          case 0:
+            System.out.println("Which enemy would you like to attack?");
+            for (int j = 0; j < enemies.size(); j++) {
+              System.out.println("Enemy " + (j + 1));
+            }
+            x = sc.nextInt();
+            if ((int) (Math.random() * 10) + 1 > 8) {
+              System.out.println("The enemy dodged the attack.");
+              continue;
+            }
+            
+            break;
+
+        }
       }
-      int x = sc.nextInt();
-      if((int)(Math.random() * 10) + 1 > 8) {
-        System.out.println("The enemy dodged the attack.");
-        continue;
-      }
-      
+
     }
   }
-}
 
-
-    public static boolean validInput(int value, int min, int max) {
+  public static boolean validInput(int value, int min, int max) {
     if (min - 1 < value && value < max + 1) {
       return true;
     } else {

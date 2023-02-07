@@ -244,5 +244,18 @@ class Player {
   public String getName() {
     return charName;
   }
+  public void equip(weapon weapon) {
+    equipped = weapon;
+    System.out.println(weapon + " has been equipped.");
+  }
 
+  public int lightAttack() {
+    int dmg = equipped.getDmg();
+    return str + dmg;
+  }
+
+  public int heavyAttack() {
+    int dmg = equipped.getDmg();
+    return str + dmg + 10;
+  }
 }
