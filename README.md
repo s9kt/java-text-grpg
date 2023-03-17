@@ -6,4 +6,5 @@ In its current state, this project has the following systems:
 - Location generation
 - Inventory management (mostly)
 - Enemy generation (A little)
+<br>
 Maybe I'll pick the project up at a later date, for now this is a showcase of my current proficency in Java and putting together everything I know.
